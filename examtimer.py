@@ -61,8 +61,8 @@ CLOCK = pygame.font.SysFont("Consolas", 64)
 WARNING1 = (0xD8, 0x61, 0x06)
 WARNING2 = (0xF4, 0x41, 0x41)
 
-window = pygame.display.set_mode((1280, 720), pygame.FULLSCREEN)
-#window = pygame.display.set_mode((1280, 720), pygame.RESIZABLE)
+#window = pygame.display.set_mode((1280, 720), pygame.FULLSCREEN)
+window = pygame.display.set_mode((1280, 720), pygame.RESIZABLE)
 pygame_width, pygame_height = pygame.display.get_surface().get_size()
 fps = pygame.time.Clock()
 exams = get_excel_data(EXCEL_FILE, WORKSHEET)
@@ -99,26 +99,26 @@ while not quit:
                 FOREGROUND_PRIMARY = (0xC0, 0xC0, 0xA0)
                 FOREGROUND_SECONDARY = (0xF0, 0xF0, 0xF0)
                 HIGHLIGHT = (0x40, 0x40, 0x40)
-        elif event.type == MOUSEMOTION:                                             ### HERE
-            pos = event.pos                                                          ### HERE
-        elif event.type == MOUSEBUTTONDOWN:                                          ### HERE
+        elif event.type == MOUSEMOTION:
+            pos = event.pos
+        elif event.type == MOUSEBUTTONDOWN:
             if session_id is None:
-                click = event.pos                                                    ### HERE
+                click = event.pos
             else:
                 clock_running = not clock_running
 
     if session_id is None:  # no session selected yet
         # Display all sessions
         window.blit(TEXT2.render("Select session:", 1, FOREGROUND_PRIMARY), (20, 20))
-        for i in range(len(session_list)):                                           ### HERE
-            y = 60+50*i                                                              ### HERE
-            h = 50                                                                   ### HERE
-            if pos[1] > y and pos[1] < (y+h):                                        ### HERE
-                pygame.draw.rect(window, HIGHLIGHT, (0,y,pygame_width,h))           ### HERE
+        for i in range(len(session_list)):
+            y = 60+50*i
+            h = 50
+            if pos[1] > y and pos[1] < (y+h):
+                pygame.draw.rect(window, HIGHLIGHT, (0,y,pygame_width,h))
             if click[1] > y and click[1] < (y+h):
                 session_id = session_list[i]
                 click = (0,0)
-            window.blit(TEXT2.render(session_list[i], 1, FOREGROUND_SECONDARY), (20, y))         ### HERE
+            window.blit(TEXT2.render(session_list[i], 1, FOREGROUND_SECONDARY), (20, y))
 
     else: # display session exam information:
         now = datetime.now()
@@ -148,9 +148,9 @@ while not quit:
                 if clock_running and now.second % 2 == 0: # pulse between "hh:mm" and "hh mm"
                     time_remaining = f"{h:02} {m:02}"
                 if seconds_remaining < (5*60): # 5 minute warning
-                    pygame.draw.rect(window, WARNING2, (pygame_width-310,y-10,150,60))
+                    pygame.draw.rect(window, WARNING2, (pygame_width-460,y-10,150,60))
                 elif seconds_remaining < (30*60): # 30 minute warning
-                    pygame.draw.rect(window, WARNING1, (pygame_width-310,y-10,150,60))
+                    pygame.draw.rect(window, WARNING1, (pygame_width-460,y-10,150,60))
                 if seconds_remaining < 60:
                     if now.second % 2 == 0:
                         time_remaining = f"   {seconds_remaining:02}"
