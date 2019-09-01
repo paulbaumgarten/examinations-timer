@@ -1,4 +1,4 @@
-# Exminations Timer (Python version)
+# Examinations Timer (Python version)
 
 A simple Python+Pygame tool that can be used to display exam timing information to invigilators and candidates. I wrote this to replace the "impossible to read whiteboard at the front of a hall" that schools seem to continue to use.
 
