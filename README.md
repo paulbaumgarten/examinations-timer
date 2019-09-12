@@ -16,6 +16,9 @@ Minimum Python 3.6 (uses f-strings).
 
 The following packages are also required:
 
+```
 xlrd
 pandas
+pyinstaller
 pygame
+```
